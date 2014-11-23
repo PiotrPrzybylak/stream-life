@@ -26,22 +26,6 @@ public class Game {
         return new Game(this.width, this.height, nextState);
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (int y = 1; y <= height; y++) {
-            for (int x = 1; x <= width; x++) {
-                if (state.get(new Cell(x, y))) {
-                    sb.append('o');
-                } else {
-                    sb.append(' ');
-                }
-            }
-            sb.append('\n');
-        }
-        return sb.toString();
-    }
-
     private Entry<Cell, Boolean> applyRules(Entry<Cell, Boolean> e) {
         int neighbors = countNeighbors(e.getKey());
         switch (neighbors) {
@@ -71,32 +55,41 @@ public class Game {
     }
 
     private boolean isXNeighbor(Cell cell, Entry<Cell, Boolean> mapEntry) {
-        if (cell.x == 1) {
-            return mapEntry.getKey().x == width
-                    || mapEntry.getKey().x == 1
-                    || mapEntry.getKey().x == 2;
-        }
-        else if (cell.x == width) {
-            return mapEntry.getKey().x == width - 1
-                    || mapEntry.getKey().x == width
-                    || mapEntry.getKey().x == 1;
-        }
-        else return mapEntry.getKey().x >= cell.x - 1
-                && mapEntry.getKey().x <= cell.x + 1;
+        return isXorYNeighbor(cell.x, mapEntry.getKey().x, width);
     }
 
     private boolean isYNeighbor(Cell cell, Entry<Cell, Boolean> mapEntry) {
-        if (cell.y == 1) {
-            return mapEntry.getKey().y == height
-                    || mapEntry.getKey().y == 1
-                    || mapEntry.getKey().y == 2;
+        return isXorYNeighbor(cell.y, mapEntry.getKey().y, height);
+    }
+
+    private boolean isXorYNeighbor(int cellCoordinate, int entryCoordinate, int upperLimit) {
+        if (cellCoordinate == 1) {
+            return entryCoordinate == upperLimit
+                    || entryCoordinate == 1
+                    || entryCoordinate == 2;
         }
-        else if (cell.y == height) {
-            return mapEntry.getKey().y == height - 1
-                    || mapEntry.getKey().y == height
-                    || mapEntry.getKey().y == 1;
+        else if (cellCoordinate == upperLimit) {
+            return entryCoordinate == upperLimit - 1
+                    || entryCoordinate == upperLimit
+                    || entryCoordinate == 1;
         }
-        else return mapEntry.getKey().y >= cell.y - 1
-                && mapEntry.getKey().y <= cell.y + 1;
+        else return entryCoordinate >= cellCoordinate - 1
+            && entryCoordinate <= cellCoordinate + 1;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (int y = 1; y <= height; y++) {
+            for (int x = 1; x <= width; x++) {
+                if (state.get(new Cell(x, y))) {
+                    sb.append('o');
+                } else {
+                    sb.append(' ');
+                }
+            }
+            sb.append('\n');
+        }
+        return sb.toString();
     }
 }
