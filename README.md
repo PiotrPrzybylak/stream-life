@@ -1,8 +1,6 @@
 stream-life
 ===========
 
-Game of Life variations and tests using Java 8 Stream API
-
 [![Build Status](https://travis-ci.org/mkrogemann/stream-life.svg?branch=master)](https://travis-ci.org/mkrogemann/stream-life)
 
 The solution is very slow at this point, simply because streaming through the whole universe for each Cell cannot be the fastest
