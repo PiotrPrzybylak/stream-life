@@ -44,8 +44,7 @@ public class Game {
     }
 
     private boolean islivingNeighbor(Cell cell, Entry<Cell, Boolean> mapEntry) {
-        return isNeighbor(cell, mapEntry)
-                && mapEntry.getValue();
+        return mapEntry.getValue() && isNeighbor(cell, mapEntry);
     }
 
     private boolean isNeighbor(Cell cell, Entry<Cell, Boolean> mapEntry) {
