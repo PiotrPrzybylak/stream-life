@@ -12,7 +12,7 @@ public class GameTest {
     public void testOscillator() {
         int width = 5;
         int height = 5;
-        Map<Cell, Boolean> state = emptyState(width, height);
+        Map<Cell, Boolean> state = MicroBench.emptyState(width, height);
         state.put(new Cell(3,2), true);
         state.put(new Cell(3,3), true);
         state.put(new Cell(3,4), true);
@@ -58,7 +58,7 @@ public class GameTest {
     public void testGlider() {
         int width = 5;
         int height = 5;
-        Map<Cell, Boolean> state = emptyState(width, height);
+        Map<Cell, Boolean> state = MicroBench.emptyState(width, height);
         state.put(new Cell(3,1), true);
         state.put(new Cell(1,2), true);
         state.put(new Cell(3,2), true);
@@ -109,15 +109,5 @@ public class GameTest {
                 "  oo \n" +
                 "     \n",
                 g5.toString());
-    }
-
-    private Map<Cell, Boolean> emptyState(int width, int height) {
-        Map<Cell, Boolean> state = new HashMap<>();
-        for (int x = 1; x <= width; x++) {
-            for (int y = 1; y <= height; y++) {
-                state.put(new Cell(x,y), false);
-            }
-        }
-        return state;
     }
 }
