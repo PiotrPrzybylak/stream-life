@@ -3,8 +3,11 @@ stream-life
 
 [![Build Status](https://travis-ci.org/mkrogemann/stream-life.svg?branch=master)](https://travis-ci.org/mkrogemann/stream-life)
 
-The solution is very slow at this point, simply because streaming through the whole universe for each Cell cannot be the fastest
-way to do it. So what's required is a more intelligent data structure or a way to efficiently build sub streams for the neighborhoods
-of each Cell.
+Why would you implement Game of Life based on Java streams? Well, you would not.
 
-Using parallelStream() vs. stream() displays expected behaviour: All cores are busy when using parallelStream().
+The solution is very slow, simply because streaming through the whole universe for each Cell cannot be the fastest
+way to do it.
+
+This code rather represents a stubborn, somewhat stupid idea.
+
+One learning though: Using parallelStream() vs. stream() displays expected behaviour: All cores are busy when using parallelStream().
